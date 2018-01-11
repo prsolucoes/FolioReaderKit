@@ -104,7 +104,12 @@ class FREpubParser: NSObject, SSZipArchiveDelegate {
         let containerPath = "META-INF/container.xml"
         do {
             let containerData = try Data(contentsOf: URL(fileURLWithPath: (bookBasePath as NSString).appendingPathComponent(containerPath)), options: .alwaysMapped)
-            let xmlDoc = try AEXMLDocument(xml: containerData)
+            
+            var xmlOptions: AEXMLOptions = AEXMLOptions()
+            xmlOptions.parserSettings.shouldProcessNamespaces = true
+            xmlOptions.parserSettings.shouldReportNamespacePrefixes = true
+            
+            let xmlDoc = try AEXMLDocument(xml: containerData, options: xmlOptions)
             let opfResource = FRResource()
             opfResource.href = xmlDoc.root["rootfiles"]["rootfile"].attributes["full-path"]
             opfResource.mediaType = FRMediaType.determineMediaType(xmlDoc.root["rootfiles"]["rootfile"].attributes["full-path"]!)
@@ -124,8 +129,12 @@ class FREpubParser: NSObject, SSZipArchiveDelegate {
         var identifier: String?
 
         do {
+            var xmlOptions: AEXMLOptions = AEXMLOptions()
+            xmlOptions.parserSettings.shouldProcessNamespaces = true
+            xmlOptions.parserSettings.shouldReportNamespacePrefixes = true
+            
             let opfData = try Data(contentsOf: URL(fileURLWithPath: opfPath), options: .alwaysMapped)
-            let xmlDoc = try AEXMLDocument(xml: opfData)
+            let xmlDoc = try AEXMLDocument(xml: opfData, options: xmlOptions)
 
             // Base OPF info
             if let package = xmlDoc.children.first {
@@ -209,8 +218,13 @@ class FREpubParser: NSObject, SSZipArchiveDelegate {
         do {
             let smilData = try Data(contentsOf: URL(fileURLWithPath: resource.fullHref), options: .alwaysMapped)
             var smilFile = FRSmilFile(resource: resource)
-            let xmlDoc = try AEXMLDocument(xml: smilData)
-
+            
+            var xmlOptions: AEXMLOptions = AEXMLOptions()
+            xmlOptions.parserSettings.shouldProcessNamespaces = true
+            xmlOptions.parserSettings.shouldReportNamespacePrefixes = true
+            
+            let xmlDoc = try AEXMLDocument(xml: smilData, options: xmlOptions)
+            
             let children = xmlDoc.root["body"].children
 
             if children.count > 0 {
@@ -254,14 +268,25 @@ class FREpubParser: NSObject, SSZipArchiveDelegate {
         do {
             if tocResource.mediaType == FRMediaType.NCX {
                 let ncxData = try Data(contentsOf: URL(fileURLWithPath: tocPath), options: .alwaysMapped)
-                let xmlDoc = try AEXMLDocument(xml: ncxData)
+                
+                var xmlOptions: AEXMLOptions = AEXMLOptions()
+                xmlOptions.parserSettings.shouldProcessNamespaces = true
+                xmlOptions.parserSettings.shouldReportNamespacePrefixes = true
+                
+                let xmlDoc = try AEXMLDocument(xml: ncxData, options: xmlOptions)
+                
                 if let itemsList = xmlDoc.root["navMap"]["navPoint"].all {
                     tocItems = itemsList
                 }
             } else {
                 let tocData = try Data(contentsOf: URL(fileURLWithPath: tocPath), options: .alwaysMapped)
-                let xmlDoc = try AEXMLDocument(xml: tocData)
-
+                
+                var xmlOptions: AEXMLOptions = AEXMLOptions()
+                xmlOptions.parserSettings.shouldProcessNamespaces = true
+                xmlOptions.parserSettings.shouldReportNamespacePrefixes = true
+                
+                let xmlDoc = try AEXMLDocument(xml: tocData, options: xmlOptions)
+                
                 if let nav = xmlDoc.root["body"]["nav"].first, let itemsList = nav["ol"]["li"].all {
                     tocItems = itemsList
                 } else if let nav = findNavTag(xmlDoc.root["body"]), let itemsList = nav["ol"]["li"].all {
@@ -340,6 +365,7 @@ class FREpubParser: NSObject, SSZipArchiveDelegate {
                     toc.children.append(readTOCReference(item))
                 }
             }
+            
             return toc
         }
     }
