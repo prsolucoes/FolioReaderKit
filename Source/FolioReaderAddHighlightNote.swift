@@ -130,6 +130,7 @@ class FolioReaderAddHighlightNote: UIViewController {
     }
     
     private func configureNavBar() {
+        /*
         let navBackground = folioReader.isNight(readerConfig.nightModeMenuBackground, UIColor.white)
         let tintColor = readerConfig.tintColor
         let navText = folioReader.isNight(UIColor.white, UIColor.black)
@@ -140,6 +141,7 @@ class FolioReaderAddHighlightNote: UIViewController {
         let saveButton = UIBarButtonItem(title: readerConfig.localizedSave, style: .plain, target: self, action: #selector(saveNote(_:)))
         saveButton.setTitleTextAttributes(titleAttrs, for: UIControlState())
         navigationItem.rightBarButtonItem = saveButton
+        */
     }
     
     private func configureKeyboardObserver() {

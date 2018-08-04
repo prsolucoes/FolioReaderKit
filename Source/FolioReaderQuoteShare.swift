@@ -6,6 +6,7 @@
 //  Copyright (c) 2016 Folio Reader. All rights reserved.
 //
 
+/*
 import UIKit
 
 class FolioReaderQuoteShare: UIViewController {
@@ -425,3 +426,4 @@ extension FolioReaderQuoteShare: UIImagePickerControllerDelegate, UINavigationCo
         self.dismiss(animated: true, completion: nil)
     }
 }
+*/

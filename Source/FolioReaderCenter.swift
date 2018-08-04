@@ -1383,6 +1383,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
      Present Quote Share
      */
     func presentQuoteShare(_ string: String) {
+        /*
         let quoteShare = FolioReaderQuoteShare(initWithText: string, readerConfig: readerConfig, folioReader: folioReader, book: book)
         let nav = UINavigationController(rootViewController: quoteShare)
 
@@ -1390,6 +1391,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
             nav.modalPresentationStyle = .formSheet
         }
         present(nav, animated: true, completion: nil)
+        */
     }
     
     /**

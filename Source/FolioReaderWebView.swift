@@ -73,6 +73,7 @@ open class FolioReaderWebView: UIWebView {
     // MARK: - UIMenuController - Actions
 
     @objc func share(_ sender: UIMenuController) {
+        /*
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         let shareImage = UIAlertAction(title: self.readerConfig.localizedShareImageQuote, style: .default, handler: { (action) -> Void in
@@ -115,6 +116,7 @@ open class FolioReaderWebView: UIWebView {
         }
 
         self.folioReader.readerCenter?.present(alertController, animated: true, completion: nil)
+        */
     }
 
     func colors(_ sender: UIMenuController?) {
