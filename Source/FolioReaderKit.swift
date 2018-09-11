@@ -189,7 +189,7 @@ extension FolioReader {
                     readerCenter.pageIndicatorView?.reloadColors()
                     readerCenter.configureNavBar()
                     readerCenter.scrollScrubber?.reloadColors()
-                    readerCenter.collectionView.backgroundColor = (self.nightMode == true ? self.readerContainer?.readerConfig.nightModeBackground : UIColor.white)
+                    readerCenter.collectionView.backgroundColor = (self.nightMode == true ? self.readerContainer?.readerConfig.nightModeBackground : UIColor(rgba: "#DFDAD4"))
                 }, completion: { (finished: Bool) in
                     NotificationCenter.default.post(name: Notification.Name(rawValue: "needRefreshPageMode"), object: nil)
                 })

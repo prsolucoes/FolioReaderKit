@@ -70,7 +70,7 @@ open class FolioReaderPage: UICollectionViewCell, UIWebViewDelegate, UIGestureRe
         self.readerContainer = FolioReaderContainer(withConfig: FolioReaderConfig(), folioReader: FolioReader(), epubPath: "")
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(refreshPageMode), name: NSNotification.Name(rawValue: "needRefreshPageMode"), object: nil)
     }
 
@@ -84,6 +84,7 @@ open class FolioReaderPage: UICollectionViewCell, UIWebViewDelegate, UIGestureRe
             webView?.dataDetectorTypes = .link
             webView?.scrollView.showsVerticalScrollIndicator = false
             webView?.scrollView.showsHorizontalScrollIndicator = false
+            webView?.isOpaque = false
             webView?.backgroundColor = .clear
             self.contentView.addSubview(webView!)
         }
@@ -91,10 +92,11 @@ open class FolioReaderPage: UICollectionViewCell, UIWebViewDelegate, UIGestureRe
 
         if colorView == nil {
             colorView = UIView()
-            colorView.backgroundColor = self.readerConfig.nightModeBackground
             webView?.scrollView.addSubview(colorView)
         }
-
+        
+        colorView.backgroundColor = (self.folioReader.nightMode ? self.readerConfig.nightModeBackground : UIColor(rgba: "#DFDAD4"))
+        
         // Remove all gestures before adding new one
         webView?.gestureRecognizers?.forEach({ gesture in
             webView?.removeGestureRecognizer(gesture)
@@ -518,16 +520,13 @@ open class FolioReaderPage: UICollectionViewCell, UIWebViewDelegate, UIGestureRe
     @objc func refreshPageMode() {
         guard let webView = webView else { return }
 
-        if (self.folioReader.nightMode == true) {
-            // omit create webView and colorView
-            let script = "document.documentElement.offsetHeight"
-            let contentHeight = webView.stringByEvaluatingJavaScript(from: script)
-            let frameHeight = webView.frame.height
-            let lastPageHeight = frameHeight * CGFloat(webView.pageCount) - CGFloat(Double(contentHeight!)!)
-            colorView.frame = CGRect(x: webView.frame.width * CGFloat(webView.pageCount-1), y: webView.frame.height - lastPageHeight, width: webView.frame.width, height: lastPageHeight)
-        } else {
-            colorView.frame = CGRect.zero
-        }
+        // omit create webView and colorView
+        let script = "document.documentElement.offsetHeight"
+        let contentHeight = webView.stringByEvaluatingJavaScript(from: script)
+        let frameHeight = webView.frame.height
+        let lastPageHeight = frameHeight * CGFloat(webView.pageCount) - CGFloat(Double(contentHeight!)!)
+        colorView.frame = CGRect(x: webView.frame.width * CGFloat(webView.pageCount-1), y: webView.frame.height - lastPageHeight, width: webView.frame.width, height: lastPageHeight)
+        colorView.backgroundColor = (self.folioReader.nightMode ? self.readerConfig.nightModeBackground : UIColor(rgba: "#DFDAD4"))
     }
     
     // MARK: - Class based click listener

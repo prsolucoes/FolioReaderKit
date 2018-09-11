@@ -141,7 +141,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
         collectionViewLayout.minimumInteritemSpacing = 0
         collectionViewLayout.scrollDirection = .direction(withConfiguration: self.readerConfig)
         
-        let background = folioReader.isNight(self.readerConfig.nightModeBackground, UIColor.white)
+        let background = folioReader.isNight(self.readerConfig.nightModeBackground, UIColor(rgba: "#DFDAD4"))
         view.backgroundColor = background
 
         // CollectionView
@@ -250,7 +250,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
     }
 
     func configureNavBar() {
-        let navBackground = folioReader.isNight(self.readerConfig.nightModeMenuBackground, UIColor.white)
+        let navBackground = folioReader.isNight(self.readerConfig.nightModeMenuBackground, UIColor(rgba: "#DFDAD4"))
         let tintColor = readerConfig.tintColor
         let navText = folioReader.isNight(UIColor.white, UIColor.black)
         let font = UIFont(name: "Avenir-Light", size: 17)!

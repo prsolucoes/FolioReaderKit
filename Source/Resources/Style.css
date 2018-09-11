@@ -202,25 +202,32 @@ html, body {
     -webkit-transition: all 0.6s ease;
 }
 
-html {
-    background-color: #FFFFFF !important;
+html, html body {
+    background-color: #DFDAD4 !important;
 }
 
-body {
-    background-color: transparent !important;
+h1, h2, h3, h4, h5, h6 {
+    color: #494742 !important;
+    background-color: #DFDAD4 !important;
+}
+
+p, div, span:not(.epub-media-overlay-playing) {
+    color: #494742 !important;
+    background-color: #DFDAD4 !important;
 }
 
 html.nightMode, html.nightMode body {
     background-color: #131313 !important;
 }
 
-.nightMode p, .nightMode div, .nightMode span:not(.epub-media-overlay-playing) {
-    color: #767676 !important;
-    background-color: transparent !important;
-}
-
 .nightMode h1, .nightMode h2, .nightMode h3, .nightMode h4, .nightMode h5, .nightMode h6 {
     color: #848484 !important;
+    background-color: #131313 !important;
+}
+
+.nightMode p, .nightMode div, .nightMode span:not(.epub-media-overlay-playing) {
+    color: #767676 !important;
+    background-color: #131313 !important;
 }
 
 html.nightMode .highlight-yellow {background:rgba(255, 235, 107, 0.9)}
