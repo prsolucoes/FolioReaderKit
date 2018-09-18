@@ -9,7 +9,6 @@
 import UIKit
 import SafariServices
 import MenuItemKit
-import JSQWebViewController
 
 /// Protocol which is used from `FolioReaderPage`s.
 @objc public protocol FolioReaderPageDelegate: class {
@@ -270,7 +269,7 @@ open class FolioReaderPage: UICollectionViewCell, UIWebViewDelegate, UIGestureRe
                 safariVC.view.tintColor = self.readerConfig.tintColor
                 self.folioReader.readerCenter?.present(safariVC, animated: true, completion: nil)
             } else {
-                let webViewController = WebViewController(url: request.url!)
+                let webViewController = SFSafariViewController(url: request.url!)
                 let nav = UINavigationController(rootViewController: webViewController)
                 nav.view.tintColor = self.readerConfig.tintColor
                 self.folioReader.readerCenter?.present(nav, animated: true, completion: nil)

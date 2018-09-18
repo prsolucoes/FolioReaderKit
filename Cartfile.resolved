@@ -1,6 +1,5 @@
-github "ArtSabintsev/FontBlaster" "4.0.1"
+github "ArtSabintsev/FontBlaster" "9f22886a22783f636f1f74a544a7cd70fc10177c"
 github "ZipArchive/ZipArchive" "v2.1.1"
 github "alexpopov/ZFDragableModalTransition" "8da951efb4202385630d1cf7104b60d1208f807e"
 github "cxa/MenuItemKit" "3.0.0"
-github "jessesquires/JSQWebViewController" "6.0.0"
-github "tadija/AEXML" "4.2.2"
+github "tadija/AEXML" "4.3.3"
