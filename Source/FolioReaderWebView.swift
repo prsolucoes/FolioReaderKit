@@ -126,80 +126,19 @@ open class FolioReaderWebView: UIWebView {
     }
 
     func remove(_ sender: UIMenuController?) {
-        if let removedId = js("removeThisHighlight()") {
-            Highlight.removeById(withConfiguration: self.readerConfig, highlightId: removedId)
-        }
         setMenuVisible(false)
     }
 
     @objc func highlight(_ sender: UIMenuController?) {
-        let highlightAndReturn = js("highlightString('\(HighlightStyle.classForStyle(self.folioReader.currentHighlightStyle))')")
-        let jsonData = highlightAndReturn?.data(using: String.Encoding.utf8)
-
-        do {
-            let json = try JSONSerialization.jsonObject(with: jsonData!, options: []) as! NSArray
-            let dic = json.firstObject as! [String: String]
-            let rect = CGRectFromString(dic["rect"]!)
-            guard let startOffset = dic["startOffset"] else {
-                return
-            }
-            guard let endOffset = dic["endOffset"] else {
-                return
-            }
-
-            createMenu(options: true)
-            setMenuVisible(true, andRect: rect)
-
-            // Persist
-            guard
-                let html = js("getHTML()"),
-                let identifier = dic["id"],
-                let bookId = (self.book.name as NSString?)?.deletingPathExtension else {
-                    return
-            }
-
-            let pageNumber = folioReader.readerCenter?.currentPageNumber ?? 0
-            let match = Highlight.MatchingHighlight(text: html, id: identifier, startOffset: startOffset, endOffset: endOffset, bookId: bookId, currentPage: pageNumber)
-            let highlight = Highlight.matchHighlight(match)
-            highlight?.persist(withConfiguration: self.readerConfig)
-
-        } catch {
-            print("Could not receive JSON")
-        }
+        
     }
     
     @objc func highlightWithNote(_ sender: UIMenuController?) {
-        let highlightAndReturn = js("highlightStringWithNote('\(HighlightStyle.classForStyle(self.folioReader.currentHighlightStyle))')")
-        let jsonData = highlightAndReturn?.data(using: String.Encoding.utf8)
         
-        do {
-            let json = try JSONSerialization.jsonObject(with: jsonData!, options: []) as! NSArray
-            let dic = json.firstObject as! [String: String]
-            let rect = CGRectFromString(dic["rect"]!)
-            guard let startOffset = dic["startOffset"] else { return }
-            guard let endOffset = dic["endOffset"] else { return }
-            
-            self.clearTextSelection()
-            
-            guard let html = js("getHTML()") else { return }
-            guard let identifier = dic["id"] else { return }
-            guard let bookId = (self.book.name as NSString?)?.deletingPathExtension else { return }
-            
-            let pageNumber = folioReader.readerCenter?.currentPageNumber ?? 0
-            let match = Highlight.MatchingHighlight(text: html, id: identifier, startOffset: startOffset, endOffset: endOffset, bookId: bookId, currentPage: pageNumber)
-            if let highlight = Highlight.matchHighlight(match) {
-                self.folioReader.readerCenter?.presentAddHighlightNote(highlight, edit: false)
-            }
-        } catch {
-            print("Could not receive JSON")
-        }
     }
     
     @objc func updateHighlightNote (_ sender: UIMenuController?) {
-        if let highlightId = js("getHighlightId()") {
-            let highlightNote = Highlight.getById(withConfiguration: readerConfig, highlightId: highlightId)
-            self.folioReader.readerCenter?.presentAddHighlightNote(highlightNote, edit: true)
-        }
+        
     }
 
     @objc func define(_ sender: UIMenuController?) {
@@ -222,37 +161,6 @@ open class FolioReaderWebView: UIWebView {
         self.clearTextSelection()
     }
 
-    func setYellow(_ sender: UIMenuController?) {
-        changeHighlightStyle(sender, style: .yellow)
-    }
-
-    func setGreen(_ sender: UIMenuController?) {
-        changeHighlightStyle(sender, style: .green)
-    }
-
-    func setBlue(_ sender: UIMenuController?) {
-        changeHighlightStyle(sender, style: .blue)
-    }
-
-    func setPink(_ sender: UIMenuController?) {
-        changeHighlightStyle(sender, style: .pink)
-    }
-
-    func setUnderline(_ sender: UIMenuController?) {
-        changeHighlightStyle(sender, style: .underline)
-    }
-
-    func changeHighlightStyle(_ sender: UIMenuController?, style: HighlightStyle) {
-        self.folioReader.currentHighlightStyle = style.rawValue
-
-        if let updateId = js("setHighlightStyle('\(HighlightStyle.classForStyle(style.rawValue))')") {
-            Highlight.updateById(withConfiguration: self.readerConfig, highlightId: updateId, type: style)
-        }
-        
-        //FIX: https://github.com/FolioReader/FolioReaderKit/issues/316
-        setMenuVisible(false)
-    }
-
     // MARK: - Create and show menu
 
     func createMenu(options: Bool) {
@@ -265,12 +173,7 @@ open class FolioReaderWebView: UIWebView {
         let colors = UIImage(readerImageNamed: "colors-marker")
         let share = UIImage(readerImageNamed: "share-marker")
         let remove = UIImage(readerImageNamed: "no-marker")
-        let yellow = UIImage(readerImageNamed: "yellow-marker")
-        let green = UIImage(readerImageNamed: "green-marker")
-        let blue = UIImage(readerImageNamed: "blue-marker")
-        let pink = UIImage(readerImageNamed: "pink-marker")
-        let underline = UIImage(readerImageNamed: "underline-marker")
-
+        
         let menuController = UIMenuController.shared
 
         let highlightItem = UIMenuItem(title: self.readerConfig.localizedHighlightMenu, action: #selector(highlight(_:)))
@@ -287,22 +190,7 @@ open class FolioReaderWebView: UIWebView {
         let removeItem = UIMenuItem(title: "R", image: remove) { [weak self] _ in
             self?.remove(menuController)
         }
-        let yellowItem = UIMenuItem(title: "Y", image: yellow) { [weak self] _ in
-            self?.setYellow(menuController)
-        }
-        let greenItem = UIMenuItem(title: "G", image: green) { [weak self] _ in
-            self?.setGreen(menuController)
-        }
-        let blueItem = UIMenuItem(title: "B", image: blue) { [weak self] _ in
-            self?.setBlue(menuController)
-        }
-        let pinkItem = UIMenuItem(title: "P", image: pink) { [weak self] _ in
-            self?.setPink(menuController)
-        }
-        let underlineItem = UIMenuItem(title: "U", image: underline) { [weak self] _ in
-            self?.setUnderline(menuController)
-        }
-
+        
         var menuItems: [UIMenuItem] = []
 
         // menu on existing highlight
@@ -314,9 +202,6 @@ open class FolioReaderWebView: UIWebView {
             }
             
             isShare = false
-        } else if isColors {
-            // menu for selecting highlight color
-            menuItems = [yellowItem, greenItem, blueItem, pinkItem, underlineItem]
         } else {
             // default menu
             menuItems = [highlightItem, defineItem, highlightNoteItem]

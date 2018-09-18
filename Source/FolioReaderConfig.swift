@@ -8,8 +8,6 @@
 
 import UIKit
 
-import RealmSwift
-
 // MARK: - FolioReaderScrollDirection
 
 /// Defines the Reader scrolling direction
@@ -27,7 +25,7 @@ public enum FolioReaderScrollDirection: Int {
     /// The current scroll direction
     ///
     /// - Returns: Returns `UICollectionViewScrollDirection`
-    func collectionViewScrollDirection() -> UICollectionViewScrollDirection {
+    func collectionViewScrollDirection() -> UICollectionView.ScrollDirection {
         switch self {
         case .vertical, .defaultVertical:
             return .vertical
@@ -160,11 +158,6 @@ open class FolioReaderConfig: NSObject {
 
     /// Enable or disable default Quote Image backgrounds
     open var quotePreserveDefaultBackgrounds    = true
-
-    // MARK: Realm
-
-    /// Realm configuration for storing highlights
-    open var realmConfiguration         = Realm.Configuration(schemaVersion: 2)
 
     // MARK: Localized strings
 
