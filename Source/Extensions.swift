@@ -470,12 +470,18 @@ internal extension UINavigationBar {
 
     func hideBottomHairline() {
         let navigationBarImageView = hairlineImageViewInNavigationBar(self)
-        navigationBarImageView!.isHidden = true
+        
+        if navigationBarImageView != nil {
+            navigationBarImageView!.isHidden = true
+        }
     }
 
     func showBottomHairline() {
         let navigationBarImageView = hairlineImageViewInNavigationBar(self)
-        navigationBarImageView!.isHidden = false
+        
+        if navigationBarImageView != nil {
+            navigationBarImageView!.isHidden = false
+        }
     }
 
     fileprivate func hairlineImageViewInNavigationBar(_ view: UIView) -> UIImageView? {
