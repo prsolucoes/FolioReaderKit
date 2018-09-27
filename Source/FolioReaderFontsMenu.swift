@@ -277,7 +277,7 @@ class FolioReaderFontsMenu: UIViewController, SMSegmentViewDelegate, UIGestureRe
             self.folioReader.nightMode = Bool(index == 1)
 
             UIView.animate(withDuration: 0.6, animations: {
-                self.menuView.backgroundColor = (self.folioReader.nightMode ? self.readerConfig.nightModeBackground : UIColor(rgba: "#DFDAD4"))
+                self.menuView.backgroundColor = (self.folioReader.nightMode ? self.readerConfig.nightModeBackground : UIColor(rgba: "#FBF0DB"))
             })
 
         } else if segmentView.tag == 2 {

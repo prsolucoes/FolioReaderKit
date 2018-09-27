@@ -94,7 +94,7 @@ open class FolioReaderPage: UICollectionViewCell, UIWebViewDelegate, UIGestureRe
             webView?.scrollView.addSubview(colorView)
         }
         
-        colorView.backgroundColor = (self.folioReader.nightMode ? self.readerConfig.nightModeBackground : UIColor(rgba: "#DFDAD4"))
+        colorView.backgroundColor = (self.folioReader.nightMode ? self.readerConfig.nightModeBackground : UIColor(rgba: "#FBF0DB"))
         
         // Remove all gestures before adding new one
         webView?.gestureRecognizers?.forEach({ gesture in
@@ -486,7 +486,7 @@ open class FolioReaderPage: UICollectionViewCell, UIWebViewDelegate, UIGestureRe
         let frameHeight = webView.frame.height
         let lastPageHeight = frameHeight * CGFloat(webView.pageCount) - CGFloat(Double(contentHeight!)!)
         colorView.frame = CGRect(x: webView.frame.width * CGFloat(webView.pageCount-1), y: webView.frame.height - lastPageHeight, width: webView.frame.width, height: lastPageHeight)
-        colorView.backgroundColor = (self.folioReader.nightMode ? self.readerConfig.nightModeBackground : UIColor(rgba: "#DFDAD4"))
+        colorView.backgroundColor = (self.folioReader.nightMode ? self.readerConfig.nightModeBackground : UIColor(rgba: "#FBF0DB"))
     }
     
     // MARK: - Class based click listener

@@ -73,7 +73,7 @@ class PageViewController: UIPageViewController {
     }
 
     func configureNavBar() {
-        let navBackground = self.folioReader.isNight(self.readerConfig.nightModeMenuBackground, UIColor(rgba: "#DFDAD4"))
+        let navBackground = self.folioReader.isNight(self.readerConfig.nightModeMenuBackground, UIColor(rgba: "#FBF0DB"))
         let tintColor = self.readerConfig.tintColor
         let navText = self.folioReader.isNight(UIColor.white, UIColor.black)
         let font = UIFont(name: "Avenir-Light", size: 17)!

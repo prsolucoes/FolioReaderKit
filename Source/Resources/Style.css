@@ -203,17 +203,17 @@ html, body {
 }
 
 html, html body {
-    background-color: #DFDAD4 !important;
+    background-color: #FBF0DB !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #494742 !important;
-    background-color: #DFDAD4 !important;
+    color: #6A6768 !important;
+    background-color: #FBF0DB !important;
 }
 
 p, div, span:not(.epub-media-overlay-playing) {
-    color: #494742 !important;
-    background-color: #DFDAD4 !important;
+    color: #6A6768 !important;
+    background-color: #FBF0DB !important;
 }
 
 html.nightMode, html.nightMode body {
