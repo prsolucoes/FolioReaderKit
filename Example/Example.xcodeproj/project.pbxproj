@@ -545,7 +545,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MultipleInstance-Example/Pods-MultipleInstance-Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MultipleInstance-Example/Pods-MultipleInstance-Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AEXML/AEXML.framework",
 				"${BUILT_PRODUCTS_DIR}/FolioReaderKit/FolioReaderKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FontBlaster/FontBlaster.framework",
@@ -564,7 +564,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MultipleInstance-Example/Pods-MultipleInstance-Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MultipleInstance-Example/Pods-MultipleInstance-Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4521900C899CED51BB10949C /* [CP] Embed Pods Frameworks */ = {
@@ -573,7 +573,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AEXML/AEXML.framework",
 				"${BUILT_PRODUCTS_DIR}/FolioReaderKit/FolioReaderKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FontBlaster/FontBlaster.framework",
@@ -592,7 +592,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ACD2A7368ACAFB17422DAA7F /* [CP] Embed Pods Frameworks */ = {
@@ -601,7 +601,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Storyboard-Example/Pods-Storyboard-Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Storyboard-Example/Pods-Storyboard-Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AEXML/AEXML.framework",
 				"${BUILT_PRODUCTS_DIR}/FolioReaderKit/FolioReaderKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FontBlaster/FontBlaster.framework",
@@ -620,7 +620,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Storyboard-Example/Pods-Storyboard-Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Storyboard-Example/Pods-Storyboard-Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C1392FF51E4FD15EBB5AA8DD /* [CP] Embed Pods Frameworks */ = {
@@ -629,7 +629,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FolioReaderTests/Pods-FolioReaderTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-FolioReaderTests/Pods-FolioReaderTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AEXML/AEXML.framework",
 				"${BUILT_PRODUCTS_DIR}/FolioReaderKit/FolioReaderKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FontBlaster/FontBlaster.framework",
@@ -652,7 +652,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FolioReaderTests/Pods-FolioReaderTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FolioReaderTests/Pods-FolioReaderTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E82F486563C1547E0775A59F /* 📦 Embed Pods Frameworks */ = {
