@@ -509,6 +509,7 @@ open class FolioReaderAudioPlayer: NSObject {
         guard !registeredCommands else { return }
 
         let command = MPRemoteCommandCenter.shared()
+        /*
         command.previousTrackCommand.isEnabled = true
         command.previousTrackCommand.addTarget(self, action: #selector(playPrevChapter))
         command.nextTrackCommand.isEnabled = true
@@ -519,7 +520,8 @@ open class FolioReaderAudioPlayer: NSObject {
         command.playCommand.addTarget(self, action: #selector(play))
         command.togglePlayPauseCommand.isEnabled = true
         command.togglePlayPauseCommand.addTarget(self, action: #selector(togglePlay))
-
+        */
+        
         registeredCommands = true
     }
 }

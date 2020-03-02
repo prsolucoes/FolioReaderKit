@@ -191,12 +191,12 @@ class FREpubParser: NSObject, SSZipArchiveDelegate {
 
         // Specific TOC for ePub 2 and 3
         // Get the first resource with the NCX mediatype
-        if let tocResource = book.resources.findByMediaType(MediaType.ncx) {
+        if let tocResource = book.resources.findByProperty("nav") {
+            book.tocResource = tocResource
+        } else if let tocResource = book.resources.findByMediaType(MediaType.ncx) {
             book.tocResource = tocResource
         } else if let tocResource = book.resources.findByExtension(MediaType.ncx.defaultExtension) {
             // Non-standard books may use wrong mediatype, fallback with extension
-            book.tocResource = tocResource
-        } else if let tocResource = book.resources.findByProperty("nav") {
             book.tocResource = tocResource
         }
 

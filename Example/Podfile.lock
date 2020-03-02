@@ -19,7 +19,7 @@ DEPENDENCIES:
   - Quick (= 1.2.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - AEXML
     - FontBlaster
     - MenuItemKit
@@ -44,4 +44,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b6eb91ecd6ae172a6e2aca9a62d6aef9abd892a9
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4
